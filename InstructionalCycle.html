@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Instructional Cycle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            position: relative;
+            width: 600px;
+            margin: 0 auto;
+        }
+        .box {
+            position: absolute;
+            display: none;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 15px;
+            width: 250px;
+			z-index: 10;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			border-radius: 8px;
+			transition: opacity 0.3s ease;
+			opacity: 0;
+        }
+        .box1 {
+            top: 50px;
+            left: 20px;
+            background-color: #e8f0fe;
+        }
+        .box2 {
+            top: 200px;
+            right: 20px;
+            background-color: #e1f3f1;
+        }
+        .box3 {
+            bottom: 150px;
+            right: 20px;
+            background-color: #f9f4e1;
+        }
+        .box4 {
+            bottom: 50px;
+            left: 20px;
+            background-color: #fbe9e7;
+        }
+        .circle-section {
+            cursor: pointer;
+        }
+		 .visible {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="Instructional_Cycle_Cropped.png" alt="Instructional Cycle" width="600" usemap="#cycle-map">
+        
+        <div id="box1" class="box box1">
+          <p><strong>Planning</strong></p>
+            <ul>
+                <li>Use Pacing Guide to identify Standard to be taught</li>
+                <li>Locate Standard Overview (if a priority standard)</li>
+                <li>Identify Learning Targets and Success Criteria</li>
+                <li>Use CFA, Standard Overview, Unit Plan, and relevant data to plan Instruction</li>
+                <li>Consider strategies to scaffold, access prior knowledge, and engage students</li>
+            </ul>
+      </div>
+        <div id="box2" class="box box2">
+            <p><strong>Instruction</strong></p>
+            <ul>
+                <li>Deliver high quality, engaging instruction</li>
+                <li>Include daily Checks for Understanding (ex: exit ticket)</li>
+            </ul>
+        </div>
+        <div id="box3" class="box box3">
+            <p><strong>Assessment</strong></p>
+            <ul>
+                <li>Administer Common Formative Assessment (CFA)</li>
+                <li>Identify students who need reteaching (those who did not master concept per CFA)</li>
+                <li>Identify students needing enrichment</li>
+            </ul>
+        </div>
+        <div id="box4" class="box box4">
+            <p><strong>Reteach/Enrich</strong></p>
+            <ul>
+                <li>For students needing reteaching, repeat steps 2 and 3</li>
+                <li>For students with mastery, extend learning through enrichment opportunities</li>
+            </ul>
+        </div>
+</div>
+
+    <map name="cycle-map">
+      <area shape="poly" coords="45,290,56,236,75,190,100,152,113,138,144,107,180,85,216,68,265,57,300,52,301,22,396,125,301,215,298,183,284,185,270,192,251,199,228,210,209,228,189,254,180,290,117,228" href="#" data-box="box1" alt="Planning" class="circle-section">
+      <area shape="poly" coords="338,185,398,126,337,54,413,72,447,93,493,131,535,183,556,226,569,271,573,296,594,301,496,385,406,300,436,297,425,252,402,225,375,203" href="#" data-box="box2" alt="Instruction" class="circle-section">
+      <area shape="poly" coords="438,340,493,390,572,329,563,393,536,443,525,463,500,493,483,510,428,552,374,572,320,580,319,607,227,506,317,415,319,444,346,442,373,430,382,425,402,408,423,381" href="#" data-box="box3" alt="Assessment" class="circle-section">
+      <area shape="poly" coords="282,446,224,507,283,577,230,567,185,550,145,522,104,484,73,434,50,373,46,338,43,321,15,319,114,232,202,317,181,320,179,339,182,360,196,383,215,410,238,425,255,435" href="#" data-box="box4" alt="Reteach/Enrich" class="circle-section">
+    </map>
+
+    <script>
+        document.querySelectorAll('.circle-section').forEach(section => {
+    let timeout;
+    section.addEventListener('mouseover', function() {
+        clearTimeout(timeout); // Clear any existing timeout
+        const boxId = this.getAttribute('data-box');
+        document.querySelectorAll('.box').forEach(box => box.classList.remove('visible'));
+        document.getElementById(boxId).classList.add('visible');
+    });
+    section.addEventListener('mouseout', function() {
+        const boxId = this.getAttribute('data-box');
+        timeout = setTimeout(() => {
+            document.getElementById(boxId).classList.remove('visible');
+        }, 500); // Adjust the delay time (in milliseconds) as needed
+    });
+});
+    </script>
+</body>
+</html>
