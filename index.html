@@ -12,6 +12,7 @@
             position: relative;
             width: 600px;
             margin: 0 auto;
+	    position: relative;
         }
         .box {
             position: absolute;
@@ -102,20 +103,29 @@
 
     <script>
         document.querySelectorAll('.circle-section').forEach(section => {
-    let timeout;
-    section.addEventListener('mouseover', function() {
-        clearTimeout(timeout); // Clear any existing timeout
-        const boxId = this.getAttribute('data-box');
-        document.querySelectorAll('.box').forEach(box => box.classList.remove('visible'));
-        document.getElementById(boxId).classList.add('visible');
-    });
-    section.addEventListener('mouseout', function() {
-        const boxId = this.getAttribute('data-box');
-        timeout = setTimeout(() => {
-            document.getElementById(boxId).classList.remove('visible');
-        }, 500); // Adjust the delay time (in milliseconds) as needed
-    });
-});
+            let timeout;
+            const boxId = section.getAttribute('data-box');
+            section.addEventListener('mouseover', function() {
+                clearTimeout(timeout); // Clear any existing timeout
+                document.querySelectorAll('.box').forEach(box => box.classList.remove('visible'));
+                document.getElementById(boxId).classList.add('visible');
+            });
+
+            section.addEventListener('mouseout', function() {
+                timeout = setTimeout(() => {
+                    document.getElementById(boxId).classList.remove('visible');
+                }, 500); // Delay to allow for mouseover on the box
+            });
+
+            document.getElementById(boxId).addEventListener('mouseover', () => {
+                clearTimeout(timeout); // Keep box visible while hovering over it
+            });
+            document.getElementById(boxId).addEventListener('mouseout', () => {
+                timeout = setTimeout(() => {
+                    document.getElementById(boxId).classList.remove('visible');
+                }, 500);
+            });
+        });
     </script>
 </body>
 </html>
