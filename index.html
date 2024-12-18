@@ -59,11 +59,18 @@
             display: block;
             opacity: 1;
         }
+	.responsive-image {
+            width: 100%;      /* Makes the image responsive to container width */
+            height: auto;     /* Adjusts the height to maintain the aspect ratio */
+            /*max-width: 600px;*/ /* Optional: Limits the image width to 600px at maximum. To apply uncomment the max-width: 600px */
+            display: block;   /* Ensures no space below the image */
+            margin: 0 auto;   /* Centers the image horizontally */
+        }    
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="https://github.com/dccovey/InstructionalCycle/blob/dacf45e235c79bb8f8ff4f73f1a3b50278c80128/Instructional_Cycle_Cropped.png?raw=true" alt="Instructional Cycle" width="600" usemap="#cycle-map">
+        <img src="https://github.com/dccovey/InstructionalCycle/blob/dacf45e235c79bb8f8ff4f73f1a3b50278c80128/Instructional_Cycle_Cropped.png?raw=true" alt="Instructional Cycle" class="responsive-image" usemap="#cycle-map">
         
         <div id="box1" class="box box1">
           <h2><strong><b>Planning</b></strong></h2>
